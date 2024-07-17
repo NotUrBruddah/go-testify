@@ -19,7 +19,7 @@ func TestMainHandlerWhenRequestIsOk(t *testing.T) {
 	handler.ServeHTTP(responseRecorder, req)
 
 	require.Equal(t, responseRecorder.Code, http.StatusOK)
-	assert.NotEmpty(t, responseRecorder.Body.String())
+	assert.NotEmpty(t, responseRecorder.Body)
 
 }
 
@@ -49,5 +49,5 @@ func TestMainHandlerWhenCountMoreThanTotal(t *testing.T) {
 	require.NotEmpty(t, body)
 
 	list := strings.Split(body, ",")
-	assert.Equal(t, len(list), totalCount)
+	assert.Len(t, list, totalCount)
 }
